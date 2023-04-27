@@ -1,0 +1,70 @@
+Inserting Data:
+To insert data into a table in SQLite using Python, you can use the execute() method of the cursor object. For example, if you have a table called "users" with columns "id", "name", and "age", you could insert a new row like this:
+sql
+Copy code
+import sqlite3
+
+# Connect to the database
+conn = sqlite3.connect('mydatabase.db')
+
+# Create a cursor object
+cursor = conn.cursor()
+
+# Insert a new row into the "users" table
+cursor.execute("INSERT INTO users (id, name, age) VALUES (1, 'John Doe', 25)")
+
+# Commit the transaction
+conn.commit()
+
+# Close the connection
+conn.close()
+Updating Data:
+To update existing data in a table, you can use the UPDATE command in a similar way. For example, to update the age of the user with ID 1 to 30, you could use the following code:
+makefile
+Copy code
+# Connect to the database
+conn = sqlite3.connect('mydatabase.db')
+
+# Create a cursor object
+cursor = conn.cursor()
+
+# Update the age of the user with ID 1 to 30
+cursor.execute("UPDATE users SET age = 30 WHERE id = 1")
+
+# Commit the transaction
+conn.commit()
+
+# Close the connection
+conn.close()
+Deleting Data:
+To delete data from a table, you can use the DELETE command. For example, to delete the user with ID 1, you could use the following code:
+makefile
+Copy code
+# Connect to the database
+conn = sqlite3.connect('mydatabase.db')
+
+# Create a cursor object
+cursor = conn.cursor()
+
+# Delete the user with ID 1
+cursor.execute("DELETE FROM users WHERE id = 1")
+
+# Commit the transaction
+conn.commit()
+
+# Close the connection
+conn.close()
+Selecting Data:
+To select data from a table, you can use the SELECT command and fetch the results using the fetchall() or fetchone() methods of the cursor object. For example, to select all the rows from the "users" table, you could use the following code:
+sql
+Copy code
+# Connect to the database
+conn = sqlite3.connect('mydatabase.db')
+
+# Create a cursor object
+cursor = conn.cursor()
+
+# Select all the rows from the "users" table
+cursor.execute("SELECT * FROM users")
+
+# Fetch 
