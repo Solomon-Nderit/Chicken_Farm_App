@@ -20,6 +20,6 @@ def main():
     if user_in=='1':
         db_viewer.view() 
     if user_in=='2':
-        db_inserter.insert()
+        db_inserter.main()
 
 main()
