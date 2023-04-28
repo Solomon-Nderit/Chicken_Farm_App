@@ -18,7 +18,7 @@ def main():
                     Input: """)
 
     if user_in=='1':
-        db_viewer.view() 
+        db_viewer.main() 
     if user_in=='2':
         db_inserter.main()
 
