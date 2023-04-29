@@ -75,7 +75,65 @@ def creator():
         elif table=="3":
              feeds_table_creator()
                 
-              
+
+def deleter():
+    def house_table_deleter():
+        print("Here is the entire Chicken Table:\n")
+        cursor.execute("SELECT * FROM chicken_houses WHERE id>0")
+        for i in cursor.fetchall():
+               print(i)
+        user_id=int(input("Enter the id of the record you wish to delete: "))
+        cursor.execute(f"DELETE FROM chicken_houses WHERE id = {user_id}")
+        db.commit()
+
+        cursor.execute("SELECT * FROM chicken_houses")
+        for i in cursor.fetchall():
+             print(i)
+    def egg_table_deleter():
+        print("Here is the entire Eggs Table:\n")
+        cursor.execute("SELECT * FROM egg_collected WHERE id>0")
+        for i in cursor.fetchall():
+               print(i)
+        user_id=int(input("Enter the id of the record you wish to delete: "))
+        cursor.execute(f"DELETE FROM egg_collected WHERE id = {user_id}")
+        db.commit()
+
+        cursor.execute("SELECT * FROM egg_collected")
+        for i in cursor.fetchall():
+             print(i)
+
+    def feeds_table_deleter():
+        print("Here is the entire Feeds Table:\n")
+        cursor.execute("SELECT * FROM feeds WHERE id>0")
+        for i in cursor.fetchall():
+               print(i)
+        user_id=int(input("Enter the id of the record you wish to delete: "))
+        cursor.execute(f"DELETE FROM feeds WHERE id = {user_id}")
+        db.commit()
+
+        cursor.execute("SELECT * FROM feeds")
+        for i in cursor.fetchall():
+             print(i)
+
+
+
+    user_in=input("""\nWhich table do you want to modify?
+                    
+                        1. Chicken Houses 
+                        2. Eggs collected
+                        3. Feeds 
+                        > """)
+    if user_in=="1":
+         house_table_deleter()
+    elif user_in=="2":
+         egg_table_deleter()
+    elif user_in=="3":
+         feeds_table_deleter()
+    
+        
+
+    
+     
 
 def main():
     #Give the user three choices between creating new records and the other clearly visible options.
@@ -87,4 +145,6 @@ def main():
                     """)
     if option=="1":
         creator()
+    elif option=="3":
+         deleter()
         

@@ -1,7 +1,6 @@
 import sqlite3
 import db_table_creator
 import db_inserter
-import numpy as np
 import db_viewer
 
 
