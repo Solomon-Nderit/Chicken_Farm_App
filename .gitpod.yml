@@ -15,7 +15,7 @@ tasks:
 
       # Upgrade pip and install virtualenv
       sudo -H pip3 install --upgrade pip virtualenv
-      sudo apt-get update && sudo apt-get upgrade
+    
 
   # Create a virtual environment and install packages
   - command: |
