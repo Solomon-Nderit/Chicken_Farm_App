@@ -1,0 +1,44 @@
+# Install Ubuntu 20.04 LTS
+image: ubuntu/focal
+
+# Run the following commands during initialization
+# to set up the environment
+tasks:
+  - init: |
+      # Install system dependencies
+      sudo apt-get update
+      sudo apt-get install -y python3-dev python3-pip libsdl2-dev \
+          libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+          libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev \
+          zlib1g-dev libjpeg-dev libtiff5-dev libx11-dev libmtdev-dev \
+          libgl1-mesa-dev libgles2-mesa-dev
+
+      # Upgrade pip and install virtualenv
+      sudo -H pip3 install --upgrade pip virtualenv
+      sudo apt-get update && sudo apt-get upgrade
+
+  # Create a virtual environment and install packages
+  - command: |
+      # Create virtual environment and activate it
+      virtualenv -p python3 .venv
+      source .venv/bin/activate
+      
+      # Install Kivy and other required packages
+      pip install kivy
+    
+      # Set up VNC server
+      sudo apt-get install -y xfce4 xfce4-goodies tightvncserver
+      echo "export USER=root" >> ~/.bashrc
+      echo "export DISPLAY=:1" >> ~/.bashrc
+      echo "export VNC_PASSWORD=12345" >> ~/.bashrc
+      vncpasswd -f <<< "12345" > ~/.vnc/passwd
+      chmod 0600 ~/.vnc/passwd
+      echo "xfce4-session" > ~/.vnc/xstartup
+      
+      # Start VNC server
+      vncserver :1 -localhost no -geometry 1920x1080 -depth 24
+      
+ports:
+  # Expose port 5901 for VNC
+  - port: 5901
+    onOpen: open-preview
