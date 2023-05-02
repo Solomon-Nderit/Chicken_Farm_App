@@ -1,5 +1,5 @@
 # Install Ubuntu 20.04 LTS
-image: ubuntu/focal
+#image: ubuntu/focal
 
 # Run the following commands during initialization
 # to set up the environment
